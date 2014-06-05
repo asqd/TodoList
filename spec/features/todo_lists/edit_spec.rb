@@ -4,8 +4,8 @@ describe "Editing todo lists" do
   subject { page }
 
   let(:submit) { "Update Todolist" }
-  let!(:todo_list) { Todolist.create!(title: "My todo list", description: "This is what I'm doing today") }
-
+  let!(:todo_list) { FactoryGirl.create(:todolist) }
+  
   def update_todo_list(options={})
     submit ||= "Update Todolist"
     options[:todo_list] ||= todo_list

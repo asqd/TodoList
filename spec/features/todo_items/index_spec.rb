@@ -1,17 +1,44 @@
 require 'spec_helper'
 
 describe "Viewing todo items" do
-  let!(:todo_list) { Todolist.create!(title: "My todo list", description: "This is what I'm doing today") }
+  subject { page }
 
-  before { visit root_path }
+  let!(:todo_list) { FactoryGirl.create(:todolist) }
+  let(:items_tag) { "ul.todo_items" }
 
-  it "display no items when todo list is empty" do
+  def visit_todo_list(list={})
+    list ||= todo_list
+    visit root_path
     within "#todo_list_#{todo_list.id}" do
       click_link "List Items"
     end
-
-    expect(page).to have_content("TodoItems#index")
   end
 
+  describe "when the todo list is empty" do
+    before { visit_todo_list }
+    it { should have_selector('h1', text: todo_list.title) }
+    it { should_not have_selector("#{items_tag} li") }
+  end
+
+  describe "when list has items" do
+
+    it "should have title list" do
+      visit_todo_list
+      page.should have_selector('h1', text: todo_list.title)
+    end
+
+    let(:items) { ["Milk", "Eggs", "Chocolate"] }
+
+    it "should have item content" do
+      items.each { |item| FactoryGirl.create(:todo_item, content: item, todolist: todo_list) }
+
+      visit_todo_list
+      expect(page).to have_selector(items_tag)
+      expect(page.all("#{items_tag} li").size).to eq items.length
+      items.each { |item| expect(page).to have_content(item)   }
+
+    end
+
+  end
 
 end
