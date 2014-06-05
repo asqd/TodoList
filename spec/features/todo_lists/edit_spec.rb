@@ -5,20 +5,6 @@ describe "Editing todo lists" do
 
   let(:submit) { "Update Todolist" }
   let!(:todo_list) { FactoryGirl.create(:todolist) }
-  
-  def update_todo_list(options={})
-    submit ||= "Update Todolist"
-    options[:todo_list] ||= todo_list
-    options[:title] ||= "Watch TV"
-    options[:description] ||= "New TV Series"
-
-    visit root_path
-    click_link 'Edit', href: edit_todolist_path(options[:todo_list])
-
-    fill_in 'Title', with: options[:title]
-    fill_in 'Description', with: options[:description]
-    click_button submit
-  end
 
   describe "successfully update todo list" do
     before { update_todo_list }

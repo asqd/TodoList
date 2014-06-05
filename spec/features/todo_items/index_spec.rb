@@ -6,14 +6,6 @@ describe "Viewing todo items" do
   let!(:todo_list) { FactoryGirl.create(:todolist) }
   let(:items_tag) { "ul.todo_items" }
 
-  def visit_todo_list(list={})
-    list ||= todo_list
-    visit root_path
-    within "#todo_list_#{todo_list.id}" do
-      click_link "List Items"
-    end
-  end
-
   describe "when the todo list is empty" do
     before { visit_todo_list }
     it { should have_selector('h1', text: todo_list.title) }

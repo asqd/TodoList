@@ -5,23 +5,7 @@ describe "Creating todo lists" do
   subject { page }
 
   let(:submit) { "Create Todolist" }
-
-  def create_todo_list(options={})
-    submit ||= "Create Todolist"
-    options[:title] ||= "My todo list"
-    options[:description] ||= "This is what I'm doing today"
-
-    visit root_path
-    click_link "New Todolist"
-    expect(page).to have_content('New todolist')
-
-    fill_in 'Title', with: options[:title]
-    fill_in 'Description', with: options[:description]
-    click_button submit
-  end
-
-
-
+  
   describe "redirect to the index page on success" do
     before { create_todo_list }
 
