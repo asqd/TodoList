@@ -13,9 +13,10 @@
 
   <tbody>
     <% @todolists.each do |todolist| %>
-      <tr>
+      <tr id=<%= "todo_list_#{todolist.id}" %>>
         <td><%= todolist.title %></td>
         <td><%= todolist.description %></td>
+        <td><%= link_to 'List Items', todolist_todo_items_path(todolist) %></td>
         <td><%= link_to 'Show', todolist %></td>
         <td><%= link_to 'Edit', edit_todolist_path(todolist) %></td>
         <td><%= link_to 'Destroy', todolist, method: :delete, data: { confirm: 'Are you sure?' } %></td>

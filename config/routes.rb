@@ -1,5 +1,8 @@
 TodoList::Application.routes.draw do
-  resources :todolists
+  #get "todo_items/index"
+  resources :todolists do
+    resources :todo_items
+  end
   root 'todolists#index'
   match '/newlist', to: 'todolists#new', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
