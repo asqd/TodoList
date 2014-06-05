@@ -4,7 +4,7 @@ describe "Editing todo lists" do
   subject { page }
 
   let(:submit) { "Update Todolist" }
-  let(:todo_list) { Todolist.create!(title: "My todo list", description: "This is what I'm doing today") }
+  let!(:todo_list) { Todolist.create!(title: "My todo list", description: "This is what I'm doing today") }
 
   def update_todo_list(options={})
     submit ||= "Update Todolist"
@@ -30,6 +30,7 @@ describe "Editing todo lists" do
   describe "when title is empty" do
     before { update_todo_list title: "" }
     let!(:title) { todo_list.title }
+    
     it "should save title" do
       todo_list.reload
       expect(todo_list.title).to eq(title)      
@@ -39,7 +40,6 @@ describe "Editing todo lists" do
 
   describe "when title is too short" do
     before {  update_todo_list title: "a" }
-
     it { should have_content('error') }
   end
 
