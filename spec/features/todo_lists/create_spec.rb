@@ -7,6 +7,7 @@ describe "Creating todo lists" do
   let(:submit) { "Create Todolist" }
 
   def create_todo_list(options={})
+    submit ||= "Create Todolist"
     options[:title] ||= "My todo list"
     options[:description] ||= "This is what I'm doing today"
 
@@ -29,7 +30,7 @@ describe "Creating todo lists" do
 
   describe "with ivalid information" do
     before { visit newlist_path }
-    
+
     it "should not create todo list" do
       expect{ click_button submit }.to_not change(Todolist, :count)
     end
