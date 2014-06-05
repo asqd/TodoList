@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Viewing todo items" do
   subject { page }
-
+  
   let!(:todo_list) { FactoryGirl.create(:todolist) }
   let(:items_tag) { "ul.todo_items" }
 

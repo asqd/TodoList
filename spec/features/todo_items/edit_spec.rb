@@ -7,17 +7,6 @@ describe "Editing todo items" do
   let!(:todo_list) { FactoryGirl.create(:todolist) }
   let!(:todo_item) { FactoryGirl.create(:todo_item, todolist: todo_list) }
 
-  def update_list_item(options={})
-    submit ||= "Save"
-    options[:todo_list] ||= todo_list
-    options[:todo_item] ||= todo_item
-    options[:content] ||= "Watch TV"
-
-    click_link "Edit", href: edit_todolist_todo_item_path(options[:todo_list], options[:todo_item])
-    fill_in "Content", with: options[:content]
-    click_button submit
-  end
-
   describe "successfull update item" do
     before do
       visit_todo_list

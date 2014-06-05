@@ -49,3 +49,14 @@ def create_list_item(options={})
   fill_in "Content", with: options[:content]
   click_button submit
 end
+
+def update_list_item(options={})
+  submit ||= "Save"
+  options[:todo_list] ||= todo_list
+  options[:todo_item] ||= todo_item
+  options[:content] ||= "Watch TV"
+
+  click_link "Edit", href: edit_todolist_todo_item_path(options[:todo_list], options[:todo_item])
+  fill_in "Content", with: options[:content]
+  click_button submit
+end

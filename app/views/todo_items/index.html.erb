@@ -5,6 +5,8 @@
 	<li>
 		<%= todo_item.content %>
 		<%= link_to "Edit", edit_todolist_todo_item_path(todo_item) %>
+		<%= link_to "Delete", todolist_todo_item_path(todo_item), method: :delete,
+									data: { confirm: "Are You sure?" } %>
 	</li>
 	<% end %>
 </ul>
