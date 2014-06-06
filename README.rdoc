@@ -1,5 +1,9 @@
 == README
 
-It's simple TodoList application creating with Rails 4, with RSpec/Capybara Tests
+It's simple TodoList application creating with Rails 4
 
-spec/support/utilites.rb contains all functions used in tests
+* Tests are written with RSpec/Capybara/FactoryGirl 
+
+* Own tests in spec/features and /spec/models directories
+
+* spec/support/utilites.rb contains all functions used in tests
