@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe "Viewing todo items" do
   subject { page }
-  
+
   let!(:todo_list) { FactoryGirl.create(:todolist) }
-  let(:items_tag) { "ul.todo_items" }
+  let(:items_tag) { ".todo_items" }
 
   describe "when the todo list is empty" do
     before { visit_todo_list }
@@ -26,7 +26,7 @@ describe "Viewing todo items" do
 
       visit_todo_list
       expect(page).to have_selector(items_tag)
-      expect(page.all("#{items_tag} li").size).to eq items.length
+      expect(page.all("#{items_tag} tr").size).to eq items.length
       items.each { |item| expect(page).to have_content(item)   }
 
     end

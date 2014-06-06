@@ -10,7 +10,7 @@ describe "Creating todo items" do
     before { create_list_item }
 
     it { should have_content('Added todo list item') }
-    it { should have_selector('li', text: todo_list.todo_items.first.content) }
+    it { should have_selector('td', text: todo_list.todo_items.first.content) }
   end
 
   describe "with invalid content" do

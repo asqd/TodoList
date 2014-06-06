@@ -1,10 +1,15 @@
 TodoList::Application.routes.draw do
   #get "todo_items/index"
   resources :todolists do
-    resources :todo_items
+    resources :todo_items do
+      member do
+        patch :complete
+      end
+    end
   end
   root 'todolists#index'
   match '/newlist', to: 'todolists#new', via: 'get'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

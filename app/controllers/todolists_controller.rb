@@ -28,10 +28,16 @@ class TodolistsController < ApplicationController
 
     respond_to do |format|
       if @todolist.save
-        format.html { redirect_to @todolist, notice: 'Todolist was successfully created.' }
+        format.html do
+          redirect_to @todolist
+          flash[:success] = 'Todolist was successfully created.'
+        end
         format.json { render action: 'show', status: :created, location: @todolist }
       else
-        format.html { render action: 'new' }
+        format.html do          
+          flash.now[:error] = "That was a problem to create todo list"
+          render action: 'new'
+        end
         format.json { render json: @todolist.errors, status: :unprocessable_entity }
       end
     end
@@ -42,10 +48,16 @@ class TodolistsController < ApplicationController
   def update
     respond_to do |format|
       if @todolist.update(todolist_params)
-        format.html { redirect_to @todolist, notice: 'Todolist was successfully updated.' }
+        format.html do
+          redirect_to @todolist
+          flash[:success] = 'Todolist was successfully updated.'
+        end
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html do
+          flash.now[:error] = "That todo list could no be updated"
+          render action: 'edit'
+        end
         format.json { render json: @todolist.errors, status: :unprocessable_entity }
       end
     end
@@ -56,19 +68,22 @@ class TodolistsController < ApplicationController
   def destroy
     @todolist.destroy
     respond_to do |format|
-      format.html { redirect_to todolists_url }
+      format.html do
+        redirect_to todolists_url
+        flash[:success] = 'Todolist was deleted'
+      end
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_todolist
-      @todolist = Todolist.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_todolist
+    @todolist = Todolist.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def todolist_params
-      params.require(:todolist).permit(:title, :description)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def todolist_params
+    params.require(:todolist).permit(:title, :description)
+  end
 end
