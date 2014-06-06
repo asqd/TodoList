@@ -1,6 +1,6 @@
 == README
 
-It's simple TodoList application creating with Rails 4
+It's simple TodoList application created with Rails 4
 
 * Tests are written with RSpec/Capybara/FactoryGirl 
 
