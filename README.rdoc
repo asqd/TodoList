@@ -7,3 +7,5 @@ It's simple TodoList application created with Rails 4
 * Own tests in spec/features and /spec/models directories
 
 * spec/support/utilites.rb contains all functions used in tests
+
+Live demo http://todolist-rails.herokuapp.com/
