@@ -1,4 +1,4 @@
-== README
+README
 
 It's simple TodoList application created with Rails 4
 
