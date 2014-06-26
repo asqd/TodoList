@@ -16,9 +16,4 @@ For migrations
 
 ``` rake db:migrate ```
 
-Fill database with sample data 
-
-``` rake db:populate ```
-
-
 Live demo http://todolist-rails.herokuapp.com
